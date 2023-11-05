@@ -1,0 +1,13 @@
+@theme "/usr/share/rofi/themes/android_notification.rasi"
+
+configuration {
+    font:                "Noto Sans Regular 20";
+    show-icons:          true;
+    icon-theme:          "Qogir";
+    display-drun:        "Apps";
+    drun-display-format: "{name}";
+    scroll-method:       0;
+    disable-history:     false;
+    sidebar-mode:        false;
+}
+

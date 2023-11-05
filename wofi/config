@@ -1,0 +1,10 @@
+show=dmenu
+location=center
+width=50%
+lines=12
+always_parse_args=true
+show_all=true
+print_command=true
+layer=overlay
+insensitive=true
+prompt=Search

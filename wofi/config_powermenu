@@ -1,0 +1,8 @@
+location=center
+width=50%
+lines=6
+show_all=true
+print_command=true
+layer=overlay
+hide_search=true
+dynamic_lines=true

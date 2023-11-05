@@ -1,0 +1,64 @@
+#icons_format = "{icon}"
+[theme]
+theme = "modern"
+#[theme.overrides]
+#idle_bg = "#123456"
+#idle_fg = "#abcdef"
+[icons]
+icons = "awesome6"
+
+[[block]]
+block = "focused_window"
+[block.format]
+full = " $title.str(max_w:200) |"
+short = " $title.str(max_w:50) |"
+[block.theme_overrides]
+idle_bg = "#9ccfd8"
+idle_fg = "#000000"
+
+[[block]]
+block = "net"
+format = " $icon {$signal_strength $ssid |eth}"
+format_alt = " $icon {$signal_strength $ssid $frequency|eth} ($device) - $ip {$ipv6} "
+interval = 5
+[block.theme_overrides]
+idle_bg = "#7daea3"
+idle_fg = "#000000"
+#[[block]]
+#block = "memory"
+#format = " $icon $mem_total_used_percents.eng(w:2) "
+#format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
+
+[[block]]
+block = "sound"
+[block.theme_overrides]
+idle_bg = "#458588"
+idle_fg = "#000000"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+
+[[block]]
+block = "backlight"
+format = "$icon $brightness "
+[block.theme_overrides]
+idle_bg = "#ef9f76"
+idle_fg = "#000000"
+
+[[block]]
+block = "battery"
+format = " $icon $percentage "
+full_format = " $icon $percentage "
+interval = 30
+[block.theme_overrides]
+idle_bg = "#d8a657"
+idle_fg = "#000000"
+
+
+[[block]]
+block = "time"
+interval = 1
+format = " $timestamp.datetime(f:'%a %d/%m %R') "
+[block.theme_overrides]
+idle_bg = "#89b482"
+idle_fg = "#000000"
