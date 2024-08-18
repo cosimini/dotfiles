@@ -20,7 +20,8 @@ vim.opt.scrolloff = 2 -- Lines always visible on top and bottom of the window
 vim.opt.list = true -- Highlight some kind of whitespaces
 vim.opt.listchars = { leadmultispace = "│   ", tab = "» ", trail = "·", nbsp = "␣" } -- ⇥
 vim.opt.hlsearch = true -- Highlight search results
---vim.cmd.filetype({ "indent", "plugin", "on" }) -- Enable filetype detection plugin autoload
+vim.cmd.filetype({ "indent", "plugin", "on" }) -- Enable filetype detection plugin autoload
+vim.opt.conceallevel = 2 -- In case of inline render, remove trailing characters
 
 -- [[ KEYMAPS ]] --
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -57,6 +58,7 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Configure and install plugins ]]
 require("lazy").setup({
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	"junegunn/vim-easy-align",
 
 	-- "gc" to comment visual regions/lines. The opts = {} forces the plugin to be loaded
 	{ "numToStr/Comment.nvim", opts = {} },

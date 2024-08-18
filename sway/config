@@ -28,6 +28,7 @@ titlebar_padding 4 4
 #exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
 # Setup GTK3
 #exec ~/.config/sway/scripts/load_gtk.sh
+exec --no-startup-id dbus-run-session pipewire
 
 ### Output configuration
 # monitor
@@ -51,8 +52,7 @@ exec swayidle -w \
 # Take screenshots with grim
 bindsym Print exec grim ~/Pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S_screenshot.png)
 
-# audio
-# volume
+# audio/volume
 set $pulsectl "/home/davide/repos/pulseaudio-ctl/common/pulseaudio-ctl.in"
 bindsym XF86AudioRaiseVolume exec $pulsectl up
 bindsym XF86AudioLowerVolume exec $pulsectl down
