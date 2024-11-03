@@ -1,0 +1,62 @@
+call plug#begin()
+Plug 'girishji/vimcomplete'
+Plug 'Donaldttt/fuzzyy'
+Plug 'habamax/vim-dir'
+Plug 'tomasiser/vim-code-dark'
+Plug 'leviosa42/kanagawa-mini.vim'
+Plug 'neovimhaskell/haskell-vim'
+call plug#end()
+
+color codedark
+set title
+set nocompatible
+set hidden
+set noswapfile
+set backspace=indent,eol,start
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set smarttab
+set nrformats-=octal
+set ttimeout
+set ttimeoutlen=100
+set hlsearch
+set incsearch
+nnoremap <silent> <Esc> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+set laststatus=2
+set ruler
+set wildmenu
+set wildoptions=pum
+set scrolloff=2
+set sidescroll=1
+set sidescrolloff=2
+set display+=lastline
+set display+=truncate
+set number
+set relativenumber
+set cursorline
+set showcmd
+set mouse=nvi
+set list
+set listchars=tab:»\ ,trail:•,leadmultispace:│\ \ \ ,eol:\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+" Delete comment character when joining commented lines.
+set formatoptions+=j
+set autoindent
+set autoread
+set history=200
+set tabpagemax=20
+" Saving options in session and view files causes more problems than it
+" solves, so disable it.
+set sessionoptions-=options
+set viewoptions-=options
+" Allow color schemes to do bright colors without forcing bold.
+set t_Co=16
+set shell=fish
+" Disable a legacy behavior that can break plugin maps.
+set nolangremap
+filetype plugin indent on
+syntax enable
+" From `:help :DiffOrig`.
+command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+" Correctly highlight $() and other modern affordances in filetype=sh.
+let g:is_posix = 1
