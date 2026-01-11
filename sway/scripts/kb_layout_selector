@@ -1,0 +1,18 @@
+#!/bin/bash
+entries="US basic\nUS intl\nit"
+selected=$(echo -e $entries|fzf)
+echo $selected
+case $selected in
+  US\ intl)
+    swaymsg input type:keyboard xkb_layout "us"
+    swaymsg input type:keyboard xkb_variant "intl"
+  ;;
+  US\ basic)
+    swaymsg input type:keyboard xkb_layout "us"
+    swaymsg input type:keyboard xkb_variant "basic"
+  ;;
+  it)
+    swaymsg input type:keyboard xkb_variant "basic"
+    swaymsg input type:keyboard xkb_layout "it"
+  ;;
+esac

@@ -1,13 +1,31 @@
+let mapleader=" "
+
 call plug#begin()
-Plug 'girishji/vimcomplete'
-Plug 'Donaldttt/fuzzyy'
-Plug 'habamax/vim-dir'
 Plug 'tomasiser/vim-code-dark'
-Plug 'leviosa42/kanagawa-mini.vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'regularhunter/builder-dark.vim'
+
+Plug 'habamax/vim-dir'
+Plug 'girishji/scope.vim'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-surround'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'vim-python/python-syntax', { 'for': 'python' } 
+Plug 'lervag/vimtex'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
+packadd editexisting
+packadd comment
+packadd justify
+
+let g:dir_invert_split = 1
+let g:dir_change_cwd = 1
+let g:codedark_modern=1
+let g:codedark_italics=1
 color codedark
+
 set title
 set nocompatible
 set hidden
@@ -21,12 +39,28 @@ set nrformats-=octal
 set ttimeout
 set ttimeoutlen=100
 set hlsearch
+set ignorecase
+set smartcase
 set incsearch
 nnoremap <silent> <Esc> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+set gdefault
 set laststatus=2
+set laststatus=2
+set statusline=%f\      " file name
+set statusline+=%h      " help file flag
+set statusline+=%m      " modified flag
+set statusline+=%r      " read only flag
+set statusline+=\ %=      " align left
+set statusline+=L:%l/%L   " line X of Y [percent of file]
+"set statusline+=[%p%%]   " Line percentage
+set statusline+=\ C:%c    " current column
+set statusline+=\ B:%n    " Buffer number
 set ruler
 set wildmenu
-set wildoptions=pum
+set wildoptions=pum,fuzzy
+set wildmode=noselect:full,full
+set autocomplete
+set complete+=F,o
 set scrolloff=2
 set sidescroll=1
 set sidescrolloff=2
@@ -36,27 +70,40 @@ set number
 set relativenumber
 set cursorline
 set showcmd
+set signcolumn=number
 set mouse=nvi
 set list
-set listchars=tab:»\ ,trail:•,leadmultispace:│\ \ \ ,eol:\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
-" Delete comment character when joining commented lines.
+set showbreak=↪\ 
+set smartindent
+set listchars=tab:»\ ,trail:·,extends:→,precedes:←,nbsp:␣,leadmultispace:│\ \ \ 
+set wrap linebreak
+set breakindent
+set conceallevel=2
 set formatoptions+=j
 set autoindent
 set autoread
 set history=200
 set tabpagemax=20
-" Saving options in session and view files causes more problems than it
-" solves, so disable it.
 set sessionoptions-=options
 set viewoptions-=options
-" Allow color schemes to do bright colors without forcing bold.
 set t_Co=16
 set shell=fish
-" Disable a legacy behavior that can break plugin maps.
 set nolangremap
 filetype plugin indent on
 syntax enable
-" From `:help :DiffOrig`.
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
-" Correctly highlight $() and other modern affordances in filetype=sh.
 let g:is_posix = 1
+
+" KEYMAPS
+nnoremap Q gq
+nnoremap <CR> :
+vnoremap <CR> :
+nnoremap <leader>b :Scope Buffer<CR>
+nnoremap <leader>f :Scope File<CR>
+nnoremap <leader>e :Dir .<CR>
+nnoremap <silent> <Esc> :noh<CR>
+nnoremap <silent> <M-j> :bn<CR>
+nnoremap <silent> <M-k> :bp<CR>
+nnoremap <silent> gb :bn<CR>
+nnoremap <silent> gB :bp<CR>
+vnoremap <silent> = "ty/<c-r>t<CR>

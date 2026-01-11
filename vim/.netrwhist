@@ -1,4 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
-let g:netrw_dirhist_2='/home/davide/misc/haskell_tests'
-let g:netrw_dirhist_1='/home/davide/misc/haskell_tests/exercises'
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/davide/.config/vim'
+let g:netrw_dirhist_5='/usr/arm-none-eabi/share/gcc-arm-none-eabi'
+let g:netrw_dirhist_4='/usr/arm-none-eabi/share/gcc-arm-none-eabi/libstdcxx'
+let g:netrw_dirhist_3='/usr/arm-none-eabi/share/gcc-arm-none-eabi/libstdcxx/v6'
+let g:netrw_dirhist_2='/usr/arm-none-eabi/share/gcc-arm-none-eabi/libstdcxx'
+let g:netrw_dirhist_1='/usr/arm-none-eabi/share/gcc-arm-none-eabi'
+let g:netrw_dirhist_0='/home/davide/.config/vim'
+let g:netrw_dirhist_9='/home/davide/.config/fish/functions'
+let g:netrw_dirhist_8='/usr/share/vim/vim91/syntax'
+let g:netrw_dirhist_7='/'

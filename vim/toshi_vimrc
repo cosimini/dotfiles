@@ -1,0 +1,162 @@
+let mapleader = " "
+
+" Plugin management with vim-plug
+call plug#begin()
+" Colorschemes
+Plug 'tomasiser/vim-code-dark'
+Plug 'nanotech/jellybeans.vim'
+Plug 'habamax/vim-habanight'
+Plug 'ycm/enough-colors'
+" File and buffer management
+Plug 'girishji/scope.vim'
+Plug 'habamax/vim-dir'
+" Coding helpers
+Plug 'LunarWatcher/auto-pairs'
+Plug 'girishji/vimcomplete'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'junegunn/vim-easy-align'
+Plug 'michaeljsmith/vim-indent-object'
+" Python
+Plug 'vim-python/python-syntax', { 'for': 'python' } 
+" LaTeX
+Plug 'lervag/vimtex'
+call plug#end()
+
+" Builtins (Should I move all of them in here?)
+packadd editexisting
+packadd comment
+packadd justify
+
+let g:codedark_modern=1
+let g:codedark_italics=1
+colorscheme codedark
+
+" Plugins options
+" VimComplete
+" let g:noNewlineInCompletionEver = 1
+" let g:vimcomplete_cr_enable = 0
+
+" Autopairs plugin
+let g:AutoPairsCompleteOnlyOnSpace = 1
+let g:AutoPairsMapCR = 0
+
+" vim-dir settings
+let g:dir_invert_split = 1
+"let g:dir_change_cwd = 1
+
+" VimTex
+let g:vimtex_view_method = 'zathura'
+
+" LSP settings
+" let lspOpts = #{autoHighlightDiags: v:true}
+" autocmd User LspSetup call LspOptionsSet(lspOpts)
+
+" let lspServers = [#{
+"        \name: 'pylsp',
+"        \filetype: ['python'],
+"        \path: 'pylsp',
+"        \args: [],
+"        \initializationOptions: #{
+"        \    pylsp: #{
+"        \        plugins: #{
+"        \            pycodestyle: #{
+"        \                ignore: ["E501", "W503"],
+"        \            },
+"        \        },
+"        \    },
+"        \},
+"        \}]
+" autocmd User LspSetup call LspAddServer(lspServers)
+
+" --- General settings
+set title
+" Reload the file if detect a change by another program
+set autoread
+" Allow backspacing over everything in insert mode.
+set backspace=indent,eol,start
+" Keep 200 lines of history
+set history=200
+" Switch biffer even if the current buffer is not saved
+set hidden
+" Disable swap file (gave me problems in the past)
+set noswapfile
+" Always show cursor position
+set ruler
+" Filetype stuff
+set autoindent
+filetype indent plugin on
+syntax on
+" Add numbers to each line on the left-hand side.
+set number relativenumber
+" Highlight cursor line
+set cursorline
+" Show commands used in the bottom right corner
+set showcmd
+" Show signs in the number column
+set signcolumn=number
+
+" Enable completion menu after pressing TAB in the command bar.
+set wildmode=longest:full,full
+set wildmenu
+" Vertical wildemenu
+set wildoptions=pum
+
+" Enable omnicompletion
+set omnifunc=syntaxcomplete#Complete
+
+" Enable search text highlight (:nohlsearch or :nohls to disable) 
+set incsearch hlsearch
+" By default search will won't be case sensitive
+set ignorecase
+" Greedy substitution by default
+set gdefault
+" Enable case sensitivity only if there's an upper case in the search string
+set smartcase
+
+" Enable mouse integration for all modes
+set mouse=a
+
+" Minimum lines on top and bottom of the screen
+set scrolloff=2
+
+" Set coceal level to hide escape characters
+set conceallevel=3
+
+" Whitespaces listing
+set list
+set showbreak=↪\ 
+set smartindent
+set listchars=tab:»\ ,trail:·,extends:→,precedes:←,nbsp:␣,leadmultispace:│\ \ \ 
+
+" Keep the indentation level when wraping
+set breakindent
+
+" Status line
+set laststatus=2
+set statusline=%f\      " file name
+set statusline+=%h      " help file flag
+set statusline+=%m      " modified flag
+set statusline+=%r      " read only flag
+
+set statusline+=\ %=      " align left
+set statusline+=L:%l/%L   " line X of Y [percent of file]
+"set statusline+=[%p%%]   " Line percentage
+set statusline+=\ C:%c    " current column
+set statusline+=\ B:%n    " Buffer number
+
+" KEY MAPS
+nnoremap Q gq
+" TODO: Choose one of the following:
+nnoremap <CR> :
+vnoremap <CR> :
+nnoremap <leader>b :Scope Buffer<CR>
+nnoremap <leader>f :Scope File<CR>
+nnoremap <leader>e :Dir .<CR>
+nnoremap <silent> <Esc> :noh<CR>
+nnoremap <silent> <M-j> :bn<CR>
+nnoremap <silent> <M-k> :bp<CR>
+nnoremap <silent> gb :bn<CR>
+nnoremap <silent> gB :bp<CR>
+vnoremap <silent> = "ty/<c-r>t<CR>

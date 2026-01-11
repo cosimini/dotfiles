@@ -29,8 +29,11 @@ exec --no-startup-id dbus-run-session pipewire
 
 ### Output configuration
 # monitor
-#output eDP1 resolution 3840x2160
-#output * scale 2
+output eDP-1 resolution 3840x2160
+output eDP-1 pos 0 0
+output DP-3 resolution 3840x2160
+output DP-3 pos 3840 0
+output DP-3 scale 1.5
 output * bg ~/.config/sway/wallpaper.png fill
 
 # Backlight control
@@ -73,6 +76,7 @@ input type:touchpad {
         middle_emulation enabled
 }
 input type:keyboard xkb_layout "it"
+bindsym $mod+Shift+g exec $term --class="little_floating_terminal" -e "/home/davide/.config/sway/scripts/kb_layout_selector"
 
 ### Key bindings
 # Still unused keybind
@@ -85,7 +89,7 @@ bindsym $mod+Return exec $term
 # start a terminal in a floating container
 bindsym $mod+Shift+Return exec $term --class="little_floating_terminal"
 # Kill focused window
-bindsym $mod+q kill
+bindsym $mod+Shift+q kill
 # Start your launcher
 bindsym $mod+d exec $term --class="little_floating_terminal" -e "/home/davide/.config/sway/scripts/fzf-dmenu.sh"
 
@@ -136,6 +140,8 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+o workspace next_on_output
 bindsym $mod+i workspace prev_on_output
+bindsym $mod+p focus output right
+bindsym $mod+u focus output left
 # Move window to next/prev container
 bindsym $mod+Shift+o move container to workspace next ; workspace next
 bindsym $mod+Shift+i move container to workspace prev ; workspace prev
@@ -221,11 +227,11 @@ mode "resize" {
     bindsym Down resize grow height $resize_step px
     bindsym Up resize shrink height $resize_step px
     bindsym Right resize grow width $resize_step px
-    # Resize but keep cenered
-	bindsym plus  resize grow width $resize_step px ; move position center
-	bindsym minus resize shrink width $resize_step px ; move position center
-	bindsym Shift+plus  resize grow height $resize_step px ; move position center
-	bindsym Shift+minus resize shrink height $resize_step px ; move position center
+    # Resize but keep centered
+    bindsym plus  resize grow width $resize_step px ; move position center
+    bindsym minus resize shrink width $resize_step px ; move position center
+    bindsym Shift+plus  resize grow height $resize_step px ; move position center
+    bindsym Shift+minus resize shrink height $resize_step px ; move position center
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -247,22 +253,23 @@ set $white      #C8C093
 set $yellow     #c4b28a
 
 set $glass      #ffffff00
-# Windows colors         border bg      text    indicator   border
-client.focused           $green $green  $black  $yellow     $green
-client.focused_inactive  $green $bg     $white  $yellow     $glass
-client.unfocused         $green $bg     $white  $yellow     $glass
-client.urgent            $red   $red    $black  $yellow     $red
+# Windows colors         border bg    text   indicator border
+client.focused           $blue  $blue $black $green    $blue
+client.focused_inactive  $blue  $bg   $white $green    $glass
+client.unfocused         $blue  $bg   $white $green    $glass
+client.urgent            $red   $red  $black $green    $red
 
 # Status Bar:
 bar {
     font Iosevka NF
     position top
     status_command i3status-rs ~/.config/i3status-rust/config.toml
+    #status_command /home/davide/misc/swaystatus/swaystatus
     status_edge_padding 0
     status_padding 0
     height 20
     colors {
-        background  $bg
+        background  $glass
         separator   $white
         statusline  $white
         # Workspace indicator colors (border, background, text)
